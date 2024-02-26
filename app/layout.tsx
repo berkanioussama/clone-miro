@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ConvexClientProvider } from "@/providers/convex-client-provider";
+import Sidebar from "@/components/dashboard/sidebar";
+import OrgSidebar from "@/components/dashboard/org-sidebar";
+import Navbar from "@/components/dashboard/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +22,16 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ConvexClientProvider>
-          {children}
+          <Sidebar/>
+          <div className="w-full h-full pl-16">
+            <div className="flex gap-x-3 h-full">
+              <OrgSidebar/>
+              <div className="h-full flex-1">
+                <Navbar/>
+                {children}
+              </div>
+            </div>
+          </div>
         </ConvexClientProvider>
       </body>
     </html>
